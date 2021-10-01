@@ -46,7 +46,7 @@ def intranet_hbn_scraper(user_mail, user_paswd):
     for i in soup.find_all('code'):
         codes.append(i.get_text())
 
-    print(codes[2])
+    return(codes[2])
 
 
 if __name__ == "__main__":
