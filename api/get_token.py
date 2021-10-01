@@ -47,7 +47,3 @@ def intranet_hbn_scraper(user_mail, user_paswd):
         codes.append(i.get_text())
 
     return(codes[2])
-
-
-if __name__ == "__main__":
-    intranet_hbn_scraper("2809@holbertonschool.com", "Julioc8172315")
