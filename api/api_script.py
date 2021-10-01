@@ -22,3 +22,7 @@ def get_info(user_email=None, password=None):
         auth_token = auth_res['auth_token']
     except:
         pass
+
+
+project_id = input("Enter id project ")
+project_req = requests.get(url + 'projects/' + project_id)
