@@ -56,6 +56,8 @@ def get_info(user_email=None, password=None):
     """
     url = 'https://intranet.hbtn.io/'
     api_key = intranet_hbn_get_token(user_email, password)
+    if api_key == None:
+        return None
     print("api_key=" + api_key)
     url_token = "users/auth_token.json"
 

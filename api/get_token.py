@@ -42,8 +42,10 @@ def intranet_hbn_get_token(user_mail, user_paswd):
     # pull PROJECT html data
     soup = BeautifulSoup(project_response.text, 'html.parser')
 
-    codes = []
-    for i in soup.find_all('code'):
-        codes.append(i.get_text())
-
-    return(codes[2])
+    try:
+        codes = []
+        for i in soup.find_all('code'):
+            codes.append(i.get_text())
+        return(codes[2])
+    except:
+        return None

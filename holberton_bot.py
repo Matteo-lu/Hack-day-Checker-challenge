@@ -20,10 +20,14 @@ async def on_message(message):
     if re.match(re.compile("Scrap me", re.I), message.content):
         message_split = message.content.replace("Scrap me ", "").split("/")
         tasks = get_info(message_split[0], message_split[1])
+        if tasks == None:
+            await message.channel.send("Something went wrong! You should check your email and password")
+            return
+
         formated_projects = []
         await message.channel.send("Your current projects are:")
         for project in tasks:
             formated_projects.append("Project name: {}\n\t\t Tasks: {}\n\t\t Checker available: {}".format(project['name'], project['tasks'], project['checker']))
         await message.channel.send("\n".join(formated_projects))
 
-client.run("ODkzNTg3NDQ0OTEyNDkyNTY1.YVdoKA.yZQSW_tIL2kJqD8BmePp8zGpJWk")
+client.run("ODkzNTg3NDQ0OTEyNDkyNTY1.YVdoKA.FjnFdqsdpda8GHDkfSaKx86Ss0I")
