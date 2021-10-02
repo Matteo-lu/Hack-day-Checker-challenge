@@ -2,7 +2,7 @@
 """module containing the function intranet_hbn_scraper"""
 
 
-def intranet_hbn_get_token(user_mail, user_paswd):
+def intranet_hbn_scraper(user_mail, user_paswd):
     """Function that enters the home page of holberton and
     extracts the id of the current projects"""
     import requests
@@ -12,7 +12,7 @@ def intranet_hbn_get_token(user_mail, user_paswd):
     from sys import argv
 
     SIGN_IN_URL = 'https://intranet.hbtn.io/auth/sign_in'
-    token_URL = 'https://intranet.hbtn.io/dashboards/my_tools'
+    home_URL = 'https://intranet.hbtn.io'
 
     # run a new requests session
     with requests.Session() as s:
@@ -37,14 +37,14 @@ def intranet_hbn_get_token(user_mail, user_paswd):
     # send payload by post method
     send_login = s.post(SIGN_IN_URL, data=payload)
 
-    project_response = s.get(token_URL)
+    project_response = s.get(home_URL)
 
     # pull PROJECT html data
     soup = BeautifulSoup(project_response.text, 'html.parser')
 
-    codes = []
-    for i in soup.find_all('code'):
-        codes.append(i.get_text())
+    projects_codes = []
+    for li in soup.main.article.ul:
+        if isinstance(li, bs4.element.Tag):
+            projects_codes.append(li.code.text)
 
-    return(codes[2])
-
+    return(projects_codes)
