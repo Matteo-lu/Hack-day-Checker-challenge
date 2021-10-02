@@ -35,6 +35,8 @@ Project name: 0x02. Share your knowledge - Specialization
          Tasks: 1
          Checker available: False
 ```
+## video :film_projector:
+https://youtu.be/kmJp5MhSW-Q
 
 ## Authors 👨‍💻
 
