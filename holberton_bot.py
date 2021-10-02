@@ -1,6 +1,6 @@
 import discord
 import re
-from intranet_hbn_scraper import intranet_hbn_scraper
+from api.api_script import get_info
 
 client = discord.Client()
 
@@ -19,6 +19,11 @@ async def on_message(message):
 
     if re.match(re.compile("Scrap me", re.I), message.content):
         message_split = message.content.replace("Scrap me ", "").split("/")
-        intranet_hbn_scraper(message_split[0], message_split[1])
+        tasks = get_info(message_split[0], message_split[1])
+        formated_projects = []
+        await message.channel.send("Your current projects are:")
+        for project in tasks:
+            formated_projects.append("Project name: {}\n\t\t Tasks: {}\n\t\t Checker available: {}".format(project['name'], project['tasks'], project['checker']))
+        await message.channel.send("\n".join(formated_projects))
 
-client.run("ODkzNTg3NDQ0OTEyNDkyNTY1.YVdoKA.5T8r2sKrjMtyY5HvwgP5trEYUq4")
+client.run("ODkzNTg3NDQ0OTEyNDkyNTY1.YVdoKA.yZQSW_tIL2kJqD8BmePp8zGpJWk")
